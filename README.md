@@ -3,7 +3,7 @@ Python kütühanelerinden biri olan Düzenli İfadelerin ( Regular Expression - 
 
 Düzenli İfadeler (Regular Expressions) konusunu farklı kaynaklardan okuyup inceleyrek öğrenmeye çalışıyor ve repoma aktarıyorum. Aşağıdaki ifadeler ve repoda bulunan ifadelerin bir kısmı https://python-istihza.yazbel.com/standart_moduller/regex.html adresinden alınmıştır. 
 
-İlerleyen zamanlarda Düzenli İfadelere (Regular Expressions) ait Türkçe içerikli Özet Tablo (CheatSheet) ve Belirlediğimiz özelliklere uygun Düzenli ifade yapılarını oluşturan python kodu / programı hazırlayıp paylaşmayı düşünüyorum.
+İlerleyen zamanlarda Düzenli İfadelere ait Türkçe içerikli Özet Tablo (CheatSheet) hazırlamayı ve belirlediğimiz özelliklere uygun Düzenli ifade yapılarını oluşturan python kodu / programı yazıp paylaşmayı düşünüyorum.
 
 > Düzenli ifadeler Python programlama dilinin en çetrefilli konularından biridir. Ama bütün zorluklarına rağmen programlama deneyimimizin bir noktasında mutlaka karşımıza çıkacak olan bu yapıyı öğrenmemizde büyük fayda var. Düzenli ifadeleri öğrendikten sonra, elle yapılması saatler sürecek bir işlemi saliseler içinde yapabildiğinizi gördüğünüzde eminim düzenli ifadelerin ne büyük bir nimet olduğunu siz de anlayacaksınız. 
 
