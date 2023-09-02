@@ -18,8 +18,8 @@ Düzenli İfadeler (Regular Expressions) konusunu farklı kaynaklardan okuyup in
 
 1. [Düzenli İfadeler](duzenli_ifadeler.md)
    
-   * [match() Metodu](duzenli_ifadeler.md#match() Metodu) 
-   * [search() Metodu](duzenli_ifadeler.md##search() Metodu)
+   * match() Metodu 
+   * search() Metodu
    * findall() Metodu
 
 2. [MetaKarakterler](metakarakterler.md)

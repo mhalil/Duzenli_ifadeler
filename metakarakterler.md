@@ -9,7 +9,6 @@ Python, köşeli parantez içinde gördüğü bütün karakterleri tek tek liste
 
 Şimdi aşağıdaki listeden **özcan**, **özhan** ve **özkan** öğelerini bu sembolden yararlanarak nasıl ayıklayacağımızı görelim:
 
-
 ```python
 import re
 
@@ -26,7 +25,6 @@ for i in liste:
     özkan
     özhan
 
-
 Yukarıdaki örnekte, bir liste içinde geçen **özcan**, **özhan** ve **özkan** öğelerini ayıklıyoruz. Burada bu üç öğedeki farklı karakterleri (**c**, **h** ve **k**) köşeli parantez içinde nasıl belirttiğimize dikkat edin. 
 
 Python, köşeli parantez içinde gördüğü bütün karakterleri tek tek liste öğelerine uyguluyor. Önce **öz** ile başlayan bütün öğeleri alıyor, ardından **öz** hecesinden sonra **c** harfiyle devam eden ve **an** hecesi ile biten öğeyi buluyor. Böylece **özcan** öğesini bulmuş oldu. 
@@ -37,13 +35,11 @@ En son hedef ise **öz** ile başlayıp **k** harfi ile devam eden ve **an** ile
 
 Yeni bir örnek ile devam edelim.
 
-
 ```python
 a = ["23BH56","TY76Z","4Y7UZ","TYUDZ","34534"]
 ```
 
 Mesela biz bu listedeki öğeler içinde, sayıyla başlayanları ayıklayalım:
-
 
 ```python
 for i in a:
@@ -55,11 +51,9 @@ for i in a:
     4Y7UZ
     34534
 
-
 Burada parantez içinde kullandığımız ifadeye dikkat edin. **0** ile **9** arasındaki bütün öğeleri içeren bir karakter dizisi tanımladık. Yani kısaca, içinde herhangi bir sayı barındıran öğeleri kapsama alanımıza aldık. Burada ayrıca `search()` yerine `match()` metodunu kullandığımıza da dikkat edin. `match()` metodunu kullanmamızın nedeni, bu metodun bir karakter dizisinin sadece en başına bakması. Amacımız sayı ile başlayan bütün öğeleri ayıklamak olduğuna göre, yukarıda yazdığımız kod, liste öğeleri içinde yer alan ve sayı ile başlayan bütün öğeleri ayıklayacaktır.
 
 Şimdi de isterseniz listedeki **TY76Z** öğesini nasıl alabileceğimize bakalım:
-
 
 ```python
 for i in a:
@@ -68,7 +62,6 @@ for i in a:
 ```
 
     TY76Z
-
 
 Burada dikkat ederseniz düzenli ifademizin başında **A-Z** diye bir şey yazdık. Bu ifade “A” ile “Z” harfleri arasındaki bütün karakterleri temsil ediyor. Biz burada yalnızca büyük harfleri sorguladık. Eğer küçük harfleri sorgulamak isteseydik **A-Z** yerine **a-z** diyecektik. 
 
@@ -79,7 +72,6 @@ Bu arada, düzenli ifadelerle ilgili daha fazla şey öğrendiğimizde yukarıda
 ## . Nokta
 
 Bu metakarakter, yeni satır karakteri hariç bütün karakterleri temsil etmek için kullanılır.  `.` metakarakteri, **sadece tek bir karakterin yerini tutar**. Aşağıdaki örneği inceleyelim:
-
 
 ```python
 for i in liste:
@@ -92,9 +84,7 @@ for i in liste:
     özkan
     özhan
 
-
 Gördüğünüz gibi, daha önce `[]` metakarakterini kullanarak yazdığımız bir düzenli ifadeyi bu kez farklı şekilde yazıyoruz. Unutmayın, bir düzenli ifade birkaç farklı şekilde yazılabilir. Biz bunlar içinde en basit ve en anlaşılır olanını seçmeliyiz. Ayrıca yukarıdaki kodu birkaç farklı şekilde de yazabilirsiniz. Mesela şu yazım da bizim durumumuzda geçerli bir seçenek olacaktır:
-
 
 ```python
 for i in liste:
@@ -106,9 +96,7 @@ for i in liste:
     özkan
     özhan
 
-
 Yalnız, unutmamamız gereken şey, bu `.` adlı metakarakterin sadece tek bir karakterin yerini tutuyor olmasıdır. Yani şöyle bir kullanım bize istediğimiz sonucu vermez:
-
 
 ```python
 liste = ["ahmet","kemal", "kamil", "mehmet"]
@@ -122,7 +110,6 @@ Burada `.` sembolü “ah” ve “meh” hecelerinin yerini tutamaz. `.` sembol
 
 `.` sembolünü kullanarak bir örnek daha yapalım.
 
-
 ```python
 a = ['23BH56', 'TY76Z', '4Y7UZ', 'TYUDZ', '34534', "1agAY54"]
 
@@ -135,7 +122,6 @@ for i in a:
     34534
     1agAY54
 
-
 Burada yaptığımız şey çok basit. Şu özelliklere sahip bir karakter dizisi arıyoruz:
 
 1. Herhangi bir karakter ile başlayacak. Bu karakter sayı, harf veya başka bir karakter olabilir.
@@ -147,7 +133,6 @@ Yukarıdaki ölçütlere uyan karakter dizilerimiz: “23BH56”, “34534”, �
 ## * Yıldız
 
 Bu metakarakter, **kendinden önce gelen karakteri SIFIR veya daha fazla** sayıda eşleştirir. Tanımı biraz karışık olsa da örnek yardımıyla bunu da anlayacağız:
-
 
 ```python
 yeniliste = ["st", "sat", "saat", "saaat", "falanca"]
@@ -162,13 +147,11 @@ for i in yeniliste:
     saat
     saaat
 
-
 Burada `*` sembolü kendinden önce gelen `a` karakterini sıfır veya daha fazla sayıda eşleştiriyor. Yani mesela `st` içinde sıfır adet `a` karakteri var. Dolayısıyla bu karakter yazdığımız düzenli ifadeyle eşleşiyor. `sat` içinde bir adet `a` karakteri var. Dolayısıyla bu da eşleşiyor. `saat` ve `saaat` karakter dizilerinde sırasıyla iki ve üç adet `a` karakteri var. Tabii ki bunlar da yazdığımız düzenli ifadeyle eşleşiyor. Listemizin en son öğesi olan `falanca`da da ilk hecede bir adet `a` karakteri var. Ama bu öğedeki sorun, bunun `s` harfiyle başlamaması. Çünkü biz yazdığımız düzenli ifadede, aradığımız şeyin `s` harfi ile başlamasını, sıfır veya daha fazla sayıda `a` karakteri ile devam etmesini ve ardından da `t` harfinin gelmesini istemiştik. `falanca` öğesi bu koşulları karşılamadığı için süzgecimizin dışında kaldı.
 
 `s` harfinin de sıfır veya daha fazla sayıda eşleşmesini istersek düzenli ifademizi `s*a*t` veya `[sa]*t` biçiminde yazmamız gerekir. Bu iki seçenek içinde `[sa]*t` şeklindeki yazımı tercih etmenizi tavsiye ederim. 
 
 Bir başka örnek inceleyelim:
-
 
 ```python
 liste = ["ahmet", "kemal", "kamil", "mehmet"]
@@ -181,7 +164,6 @@ for i in liste:
     ahmet
     mehmet
 
-
 Gördüğünüz gibi `ahmet` ve `mehmet` öğelerini başarıyla ayıkladık. Bunu yapmamızı sağlayan şey de `*` adlı metakarakter oldu. Burada Python’a şu emri verdik: *Bana kelime başında herhangi bir karakteri (`.` sembolü herhangi bir karakterin yerini tutuyor) sıfır veya daha fazla sayıda içeren ve sonu da `met` ile biten bütün öğeleri ver!*
 
 Kısaca ifade etmek gerekirse, bu komut sayesinde, sonu `met` ile biten her şey (`met` ifadesinin kendisi de dâhil olmak üzere) kapsama alanımıza girecektir.
@@ -189,7 +171,6 @@ Kısaca ifade etmek gerekirse, bu komut sayesinde, sonu `met` ile biten her şey
 ## + Artı
 
 `+` metakarakteri **kendisinden önce gelen karakteri BİR veya daha fazla sayıda** tekrar eden karakterleri ayıklar.
-
 
 ```python
 liste = ["ahmet", "mehmet", "met", "kezban"]
@@ -201,8 +182,6 @@ for i in liste:
 
     ahmet
     mehmet
-
-
 
 ```python
 yeniliste = ["st", "sat", "saat", "saaat", "falanca"]
@@ -216,8 +195,6 @@ for i in yeniliste:
     saat
     saaat
 
-
-
 ```python
 a = ["23BH56", "TY76Z", "4Y7UZ", "TYUDZ", "34534"]
 
@@ -228,11 +205,9 @@ for i in a:
 
     TY76Z
 
-
 ## ? Soru İşareti
 
 `?` metakarakteri, **kendisinden önce gelen karakterin SIFIR veya BİR defa** eşleştiği durumları kapsar. Örneğe bakalım:
-
 
 ```python
 yeniliste = ["st", "sat", "saat", "saaat", "falanca"]
@@ -245,11 +220,9 @@ for i in yeniliste:
     st
     sat
 
-
 Şimdi bu metakarakteri kullanarak gerçek hayatta karşımıza çıkabilecek bir örnek verelim. Bu metakarakterin tanımına tekrar bakarsak, **olsa da olur olmasa da olur** diyebileceğimiz durumlar için bu metakarakterin rahatlıkla kullanılabileceğini görürüz. 
 
 Şöyle bir örnek verelim: Diyelim ki bir metin üzerinde arama yapacaksınız. Aradığınız kelime `uluslararası`:
-
 
 ```python
 metin = """Uluslararası hukuk, uluslar arası ilişkiler altında bir disiplindir. Uluslararası ilişkilerin hukuksal 
@@ -258,7 +231,6 @@ aktörlerin girişi bu dalı sadece devletlerarası olmaktan çıkarmıştır.""
 ```
 
 Şimdi yapmak istediğimiz şey `uluslararası` kelimesini bulmak. Ama dikkat ederseniz metin içinde `uluslararası` kelimesi aynı zamanda `uluslar arası` şeklinde de geçiyor. Bizim bu iki kullanımı da kapsayacak bir düzenli ifade yazmamız gerekecek.
-
 
 ```python
 nesne = re.findall("[Uu]luslar ?arası", metin)
@@ -272,13 +244,11 @@ for i in nesne:
     Uluslararası
     uluslar arası
 
-
 Verdiğimiz düzenli ifade kalıbını dikkatlice inceleyin. Bildiğiniz gibi, `?` metakarakteri, kendinden önce gelen karakterin **sıfır veya bir kez** geçtiği durumları arıyor. Burada `?` sembolünü ` ` karakterinden, yani `boşluk` karakterinden sonra kullandık. Dolayısıyla, *boşluk karakterinin sıfır veya bir kez geçtiği durumları* hedefledik. Bu şekilde hem `uluslar arası` hem de `uluslararası` kelimesini ayıklamış olduk. Düzenli ifademizde ayrıca `[Uu]` yazdık, çünkü metnimiz içinde `uluslararası` kelimesinin büyük harfle başladığı yerler de var. Bildiğiniz gibi, `uluslar` ve `Uluslar` kelimeleri asla aynı değildir. Dolayısıyla hem `u` harfini hem de `U` harfini bulmak için, daha önce öğrendiğimiz `[]` metakarakterini kullanıyoruz.
 
 ## {} Küme Parantezi
 
 { } Küme Parantezi metakarakterimiz yardımıyla bir eşleşmeden kaç adet istediğimizi belirtebiliyoruz. Yine aynı örnek üzerinden gidelim:
-
 
 ```python
 for i in yeniliste:
@@ -288,11 +258,9 @@ for i in yeniliste:
 
     saaat
 
-
 Burada `a` karakterinin **3 kez** tekrar etmesini istediğimizi belirttik. Python da bu emrimizi hemen yerine getirdi.
 
 Bu metakarakterin ilginç bir özelliği daha vardır. Küme içinde iki farklı sayı yazarak, **bir karakterin en az ve en çok** kaç kez tekrar etmesini istediğimizi belirtebiliriz. Örneğin:
-
 
 ```python
 for i in yeniliste:
@@ -305,13 +273,11 @@ for i in yeniliste:
     saat
     saaat
 
-
 `sa{0,3}t` ifadesiyle, `a` harfinin en az sıfır kez, en çok da üç kez tekrar etmesini istediğimiz söyledik. Dolayısıyla, “a” harfinin sıfır, bir, iki ve üç kez tekrar ettiği durumlar ayıklanmış oldu. 
 
 ## ^ Şapka
 
 `^` sembolünün iki işlevi var. Birinci işlevi, **bir karakter dizisinin en başındaki veriyi sorgulamaktır**. Yani aslında `match()` metodunun varsayılan olarak yerine getirdiği işlevi bu metakarakter yardımıyla `search()` metodunda da kullanabiliyoruz.
-
 
 ```python
 a = ['23BH56', 'TY76Z', '4Y7UZ', 'TYUDZ', '34534', '1agAY54']
@@ -324,11 +290,9 @@ for i in a:
 
     TY7
 
-
 Gördüğünüz gibi, `^` (şapka) metakarakteri `search()` metodunun, karakter dizilerinin sadece en başına bakmasını sağladı. O yüzden de bize sadece, `TY7` çıktısını verdi. 
 
 Aynı kodu, şapkasız olarak, şu şekilde kullanırsak:
-
 
 ```python
 for i in a:
@@ -342,11 +306,9 @@ for i in a:
     Y7
     AY5
 
-
 Gördüğünüz gibi, `^` şapka sembolü olmadığında `search()` metodu karakter dizisinin tamamını tarıyor. Biz yukarıdaki koda bir `^` sembolü ekleyerek, metodumuzun sadece karakter dizisinin en başına bakmasını istedik. 
 
 Burada dikkatimizi çekmesi gereken başka bir nokta da, `search()` metodundaki çıktının **kırpılmış** olması. Dikkat ettiyseniz, `search()` metodu bize öğenin tamamını vermedi. Öğelerin yalnızca `[A-Z]+[0-9]` kalıbına uyan kısımlarını verdi. Çünkü biz ona tersini söylemedik. Eğer öğelerin tamamını istiyorsak bunu açık açık belirtmemiz gerekir:
-
 
 ```python
 for i in a:
@@ -360,9 +322,7 @@ for i in a:
     Y7UZ
     AY54
 
-
 Veya metodumuzun karakter dizisinin sadece en başına bakmasını istersek:
-
 
 ```python
 for i in a:
@@ -373,7 +333,6 @@ for i in a:
 
     TY76Z
 
-
 Bu kodlarda düzenli ifade kalıbının sonuna `.*` sembolünü eklediğimize dikkat edin. Böylelikle metodumuzun sonu herhangi bir şekilde biten öğeleri bize vermesini sağladık.
 
 `^` metakarakterinin, karakter dizilerinin en başına demir atmak dışında başka bir görevi daha vardır: **Hariç** anlamına gelmektedir.
@@ -381,7 +340,6 @@ Bu kodlarda düzenli ifade kalıbının sonuna `.*` sembolünü eklediğimize di
 Bu görevini sadece `[]` metakarakterinin içinde kullanıldığı zaman yerine getirir. Bunu bir örnekle görelim. Yukarıdaki listemiz üzerinde öyle bir süzgeç uygulayalım ki, **1agAY54** öğesi çıktılarımız arasında görünmesin. 
 
 Bu öğeyi avlayabilmek için kullanmamız gereken düzenli ifade şöyle olacaktır: `[0-9A-Z][^a-z]+`
-
 
 ```python
 for i in a:
@@ -396,7 +354,6 @@ for i in a:
     TYUDZ
     34534
 
-
 Burada şu ölçütlere sahip bir öğe arıyoruz:
 
 1. Aradığımız öğe bir sayı veya büyük harf ile başlamalı
@@ -409,7 +366,12 @@ Burada, `^` işaretinin nasıl kullanıldığına ve küçük harfleri nasıl d�
 
 ## $ Dolar
 
-
 ```python
 
 ```
+
+
+
+
+
+Kaynak: [Düzenli İfadeler - Yazbel Python Belgeleri](https://python-istihza.yazbel.com/standart_moduller/regex.html)
