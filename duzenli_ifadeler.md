@@ -10,7 +10,7 @@ import re
 
 ## match() Metodu
 
-Bir karakter dizisi içinde belirli bir kelimenin ya da kelime grubunun geçip geçmediğini öğrenmek istiyorsak bu işlemi `match()` metodunu kullanarak yapabiliriz:
+Bir karakter dizisinin, belirli bir kelimenin ya da kelime grubu ile başlayıp başlamadığını öğrenmek istiyorsak bu işlemi `match()` metodunu kullanarak yapabiliriz:
 
 
 ```python
@@ -26,7 +26,7 @@ re.match("python", cumle)
 
 
 
-**match()** metodunun ilk argümanı karşılaştırılacak (aranacak) değer, ikinci argümanı ise , karşılaşırmanın (aramanın) yapılacağı karakter dizisi olmalıdır.
+**match()** metodunun ilk argümanı eşleştirilecek (aranacak) değer, ikinci argümanı ise , eşleştirilecek (aramanın) yapılacağı karakter dizisi olmalıdır.
 Bu çıktıdaki **span** parametresi, aradığımız **python** karakter dizisinin, **cumle** değişkeninin 0. ile 6. karakterleri arasında yer aldığını söylüyor bize.
 
 
@@ -90,7 +90,7 @@ type(x)
 Gördüğünüz gibi **x** bir eşleştirme (match) nesnesidir.
 `group()` metodu, düzenli ifadelerin değil, eşleşme nesnelerinin bir metodudur.
 
-Bu metodu kullandığımızda direkt aranan değer ekrana yazdırılacaktır. Bu aşamada, metodun gereksiz ya da saçma olduğunu düşünüyor olabilirsiniz. Aşağıdaki konuları (özellikle Metakarakterler konusunu) okudukça, inceledikçe `group()` metodunun ne işe yaradığını anlayacaksınız.
+Bu metodu kullandığımızda direkt aranan değer ekrana yazdırılacaktır. Bu aşamada, metodun gereksiz ya da saçma olduğunu düşünüyor olabilirsiniz. **Eşleşme Nesnelerinin Metotları** başlığı altında  `group()` metodunun ne işe yaradığını daha detaylı inceleyeceğiz.
 
 
 ```python
@@ -127,7 +127,7 @@ print(re.match("güçlü", cumle))
 **cumle** değişkeninde **güçlü** ifadesi geçtiği halde `match()` metodu bize bir eşleşme nesnesi döndürmedi. Peki ama neden?
 
 Aslında bu gayet normal. Çünkü `match()` metodu bir karakter dizisinin sadece en başına bakar. 
-Yani **python güçlü bir programlama dilidir.** ifadesini tutan **cumle** değişkenine `re.match(“güçlü”, cumle)` gibi bir fonksiyon uyguladığımızda, `match()` metodu **cumle** değişkeninin yalnızca en başına bakacağı ve **cumle** değişkeninin en başında **güçlü** yerine **python** ifadesi olduğu için, `match()` metodu bize olumsuz yanıt verecektir.
+Yani "**python güçlü bir programlama dilidir.**" ifadesini tutan **cumle** değişkenine `re.match(“güçlü”, cumle)` gibi bir fonksiyon uyguladığımızda, `match()` metodu **cumle** değişkeninin yalnızca en başına bakacak ve **cumle** değişkeninin en başında **güçlü** yerine **python** ifadesini gördüğü için, bize olumsuz yanıt verecektir.
 
 Aslında `match()` metodunun yaptığı bu işi, karakter dizilerinin `split()` metodu yardımıyla da yapabiliriz:
 
@@ -155,7 +155,7 @@ cumle.split()[0] == "güçlü"
 
 
 
-aynı işi sadece `startswith()` metodunu kullanarak dahi yapabiliriz:
+Aynı işi sadece `startswith()` metodunu kullanarak dahi yapabiliriz:
 
 
 ```python
@@ -234,7 +234,7 @@ re.search("kebap", liste)
 
     TypeError                                 Traceback (most recent call last)
 
-    /tmp/ipykernel_38897/1944706800.py in <module>
+    /tmp/ipykernel_3704/1944706800.py in <module>
           1 liste = ["elma", "armut", "kebap"]
     ----> 2 re.search("kebap", liste)
     
@@ -284,28 +284,7 @@ Bu metin içinde geçen bütün “Python” kelimelerini bulmak istiyoruz:
 print(re.findall("Python", metin))
 ```
 
+    ['Python', 'Python', 'Python', 'Python', 'Python', 'Python']
+
+
 Gördüğünüz gibi, metinde geçen bütün “Python” kelimelerini bir çırpıda liste olarak aldık.
-
-## Metakarakterler
-
-Metakarakterler; kabaca, programlama dilleri için özel anlam ifade eden sembollerdir. Örneğin `\n` bir bakıma bir metakarakterdir, çünkü `\n` sembolü Python programlama dili için özel bir anlam taşır. Python bu sembolü gördüğü yerde yeni bir satıra geçer. Yukarıda **kendisiyle eşleşmeyen karakterler** ifadesiyle kastettiğimiz şey de işte bu metakarakterlerdir. Örneğin, **a** harfi yalnızca kendisiyle eşleşir. Tıpkı **istihza** kelimesinin yalnızca kendisiyle eşleşeceği gibi. Ancak mesela `\t` ifadesi kendisiyle eşleşmez. Python bu işareti gördüğü yerde sekme (tab) düğmesine basılmış gibi tepki verecektir. İşte düzenli ifadelerde de buna benzer metakarakterlerden yararlanacağız. Düzenli ifadeler içinde de, özel anlam ifade eden pek çok sembol, yani metakarakter vardır. Şimdi bu meta karakterleri ayrı ayrı başlıklar altında inceleyelim.
-
-## [] Sembolü
-
-İlk inceleyeceğimiz metakarakterlerden biri `[ ]` sembolüdür. Şimdi aşağıdaki listeden **özcan**, **özhan** ve **özkan** öğelerini bu sembolden yararlanarak nasıl ayıklayacağımızı görelim:
-
-
-```python
-liste = ["özcan", "mehmet", "süleyman", "selim", "kemal", "özkan", "esra", "dündar", "esin", "esma", "özhan", 
-         "özlem"]
-
-for i in liste:
-    nesne = re.search("öz[chk]an", i)
-    if nesne:
-        print(nesne.group())
-```
-
-    özcan
-    özkan
-    özhan
-
