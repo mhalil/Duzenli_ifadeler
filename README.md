@@ -38,4 +38,12 @@ Düzenli İfadeler (Regular Expressions) konusunu farklı kaynaklardan okuyup in
    
    * "^" Şapka
    
+   * "$" Dolar
+   
+   * "\" Ters Bölü
+   
+   * "|" Dik Çizgi, Boru (Pipe) Sembolü
+   
+   * "( )" Parantez 
+   
    ![regex](img/regex.png)
