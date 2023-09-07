@@ -4,6 +4,8 @@ Düzenli İfadeler (Regular Expressions) konusunu farklı kaynaklardan okuyup in
 
 İlerleyen zamanlarda Düzenli İfadelere ait Türkçe içerikli Özet Tablo (Cheat Sheet) hazırlamayı ve belirlediğimiz özelliklere göre Düzenli ifade yapılarını oluşturan python kodu / programı yazıp paylaşmayı düşünüyorum.
 
+![regex](img/regex.png)
+
 ### Düzenli İfadeler (Regular Expressions) Nedir ?
 
 > Düzenli ifadeler (Regular Expressions, kısaca "Regex" ya da "Regexp"), Python programlama dilinin en çetrefilli konularından biridir. Ama bütün zorluklarına rağmen programlama deneyimimizin bir noktasında mutlaka karşımıza çıkacak olan bu yapıyı öğrenmemizde büyük fayda var. Düzenli ifadeleri öğrendikten sonra, elle yapılması saatler sürecek bir işlemi saliseler içinde yapabildiğinizi gördüğünüzde eminim düzenli ifadelerin ne büyük bir nimet olduğunu siz de anlayacaksınız. 
@@ -46,4 +48,36 @@ Düzenli İfadeler (Regular Expressions) konusunu farklı kaynaklardan okuyup in
    
    * "( )" Parantez 
    
-   ![regex](img/regex.png)
+   * Eşleşme Nesnelerinin Metotları
+     
+     * group() metodu
+     
+     * groups() metodu
+   
+   * Özel Diziler
+     
+     * \s
+     
+     * \S
+     
+     * \d
+     
+     * \D
+     
+     * \w
+     
+     * \W
+   
+   * Düzenli İfadelerin Derlenmesi
+     
+     * compile() metodu
+       
+       - re.IGNORECASE veya re.I
+       
+       - re.DOTALL veya re.S
+       
+       - 
+   
+   * Düzenli İfadelerle Metin/Karakter Dizisi Değiştirme İşlemleri
+     
+     * sub() metodu

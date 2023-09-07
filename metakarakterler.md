@@ -564,9 +564,333 @@ for i in veri:
     650-xyz-1653
 
 
-Kaynak: https://python-istihza.yazbel.com/standart_moduller/regex.html
+# Eşleşme Nesnelerinin Metotları
+
+## group() metodu
+Bu bölümde doğrudan düzenli ifadelerin değil, ama düzenli ifadeler kullanılarak üretilen eşleşme nesnelerinin bir metodu olan `group()` metodundan bahsedeceğiz. Esasında biz bu metodu önceki bölümlerde de kullanmıştık. Ama burada bu metoda biraz daha ayrıntılı olarak bakacağız.
+
+Daha önceki bölümlerden hatırlayacağınız gibi, bu metot düzenli ifadeleri kullanarak eşleştirdiğimiz karakter dizilerini görme imkanı sağlıyordu. Bu bölümde bu metodu `( )` metakarakteri yardımıyla daha verimli bir şekilde kullanacağız. İsterseniz ilk olarak şöyle basit bir örnek verelim:
 
 
 ```python
+kardiz = "python bir programlama dilidir"
+nesne = re.search("(python) (bir) (programlama) (dilidir)", kardiz)
 
+print(nesne.group())
 ```
+
+    python bir programlama dilidir
+
+
+Burada düzenli ifade kalıbımızı nasıl grupladığımıza dikkat edin. `print(nesne.group())` komutunu verdiğimizde eşleşen karakter dizileri ekrana döküldü. Şimdi bu grupladığımız bölümlere tek tek erişelim:
+
+
+```python
+nesne.group(0)
+```
+
+
+
+
+    'python bir programlama dilidir'
+
+
+
+Gördüğünüz gibi, “0” indeksi eşleşen karakter dizisinin tamamını veriyor. Gerisinin nasıl olacağını tahmin edebilirsiniz:
+
+
+```python
+print(nesne.group(1))
+print(nesne.group(2))
+print(nesne.group(3))
+print(nesne.group(4))
+```
+
+    python
+    bir
+    programlama
+    dilidir
+
+
+## groups() metodu
+
+Bu metot, bize kullanabileceğimiz bütün grupları bir *demet* halinde sunar:
+
+
+```python
+nesne.groups()
+```
+
+
+
+
+    ('python', 'bir', 'programlama', 'dilidir')
+
+
+
+# Özel Diziler
+
+## \s   Boşluk Karakterinin Yerini Tutan Özel Dizi.
+
+Bu sembol (`\s`), bir karakter dizisi içinde geçen boşlukları yakalamak için kullanılır.
+
+
+```python
+a = ["5 Ocak", "27Mart", "4 Ekim", "Nisan 3"]
+
+for i in a:
+    nesne = re.search("[0-9]\\s[A-Za-z]+",i)
+    if nesne:
+        print(nesne.group())
+```
+
+    5 Ocak
+    4 Ekim
+
+
+Yukarıdaki örnekte, bir sayı ile başlayan, ardından bir adet boşluk karakteri içeren, sonra da bir büyük veya küçük harfle devam eden karakter dizilerini ayıkladık. Burada boşluk karakterini `\s` simgesi ile gösterdiğimize dikkat edin.
+
+## \S   Boşluk Karakterinin Dışındaki Karakterlerin Tutan Özel Dizi.
+
+`\S` özel dizisi, boşluk olmayan karakterleri avlar.
+
+
+```python
+for i in a:
+    nesne = re.search("\d+\S\w+",i)
+    if nesne:
+        print(nesne.group())
+```
+
+    27Mart
+
+
+## \d   Sayıların Yerini Tutan Özel Dizi.
+Bu sembol, bir karakter dizisi içinde geçen ondalık sayıları eşleştirmek için kullanılır. Yani `[^0-9]` ifadesi ile eşdeğerdir.
+
+Buraya kadar olan örneklerde bu işlevi yerine getirmek için `[0-9]` ifadesinden yararlanıyorduk. Şimdi artık aynı işlevi daha kısa yoldan, `\d` dizisi ile yerine getirebiliriz. İsterseniz yine yukarıdaki örnekten gidelim:
+
+
+```python
+a = ["5 Ocak", "27Mart", "4 Ekim", "Nisan 3"]
+
+for i in a:
+    nesne = re.search("\d\s[A-Za-z]+",i)
+    if nesne:
+        print(nesne.group())
+```
+
+    5 Ocak
+    4 Ekim
+
+
+Burada, `[0-9]` yerine `\d` yerleştirerek daha kısa yoldan sonuca vardık.
+
+## \D   Sayı Olmayan Karakterlerin Yerini Tutan Özel Dizi.
+
+`\D` özel dizisi ondalık sayı olmayan karakterleri avlar. Yani `[^0-9]` ile eşdeğerdir.
+
+
+```python
+for i in a:
+    nesne = re.search("\D+",i)
+    if nesne:
+        print(nesne.group())
+```
+
+     Ocak
+    Mart
+     Ekim
+    Nisan 
+
+
+
+```python
+for i in a:
+    nesne = re.search("\s\D+",i)
+    if nesne:
+        print(nesne.group())
+```
+
+     Ocak
+     Ekim
+
+
+## \w   Alfanümerik Karakterlerin Yerini Tutan Özel Dizi.
+
+Bu sembol, bir karakter dizisi içinde geçen alfanümerik karakterleri (Herhangi bir harf, rakam) ve buna ek olarak alt çizgi karakterini `_` bulmak için kullanılır. 
+
+Bu özel dizi şu ifadeyle aynı anlama gelir: `[a-zA-Z0-9_]`. Bu ifadeyi yazmaktansa `\w` yazmanın ne kadar kolay olduğu ortada.
+
+
+```python
+a = "abc123_$%+"
+
+print(re.search("\w*", a).group())
+```
+
+    abc123_
+
+
+## \W   Alfanümerik Karakterlerin Dışındaki Karakterlerin Yerini Tutan Özel Dizi.
+
+Bu sembol Harf, rakam veya alt çizgi karakteri dışında herhangi bir şeyle eşleşir. 
+
+Bu özel dizi şu ifadeyle aynı anlama gelir: `[^a-zA-Z0-9_]` ile eşdeğerdir
+
+
+```python
+b = ["abc", "123", "$%+"]
+
+for i in b:
+    print(re.search("\W*", i).group())
+```
+
+    
+    
+    $%+
+
+
+Şimdi bu özel diziler için genel bir örnek verip konuyu kapatalım.
+
+
+```python
+veriler = ["esra : istinye 05331233445", "esma : levent 05322134344", "sevgi : dudullu 05354445434", 
+           "kemal : sanayi 05425455555", "osman : tahtakale 02124334444","metin : taksim 02124344332"]
+```
+
+Amacımız bu listede yer alan isim ve telefon numaralarını `isim > telefon numarası` şeklinde almak:
+
+
+```python
+for i in veriler:
+    nesne = re.search("(\w+)\s+:\s(\w+)\s+(\d+)",i)
+    if nesne:
+        print("{} > {}".format(nesne.group(1), nesne.group(3)))
+```
+
+    esra > 05331233445
+    esma > 05322134344
+    sevgi > 05354445434
+    kemal > 05425455555
+    osman > 02124334444
+    metin > 02124344332
+
+
+Burada formülümüz şu şekilde: `Bir veya daha fazla karakter` + `bir veya daha fazla boşluk` + `’:’ işareti` + `“bir adet boşluk` + `bir veya daha fazla sayı`
+
+# Düzenli İfadelerin Derlenmesi
+
+## compile() metodu
+
+En başta da söylediğimiz gibi, düzenli ifadeler, karakter dizilerine göre biraz daha yavaş çalışırlar. Ancak düzenli ifadelerin işleyişini hızlandırmanın da bazı yolları vardır. Bu yollardan biri de `compile()` metodunu kullanmaktır.
+
+**compile** kelimesi İngilizcede **derlemek** anlamına gelir. İşte biz de bu `compile()` metodu yardımıyla düzenli ifade kalıplarımızı kullanmadan önce derleyerek daha hızlı çalışmalarını sağlayacağız. 
+
+Küçük boyutlu projelerde `compile()` metodu pek hissedilir bir fark yaratmasa da özellikle büyük çaplı programlarda bu metodu kullanmak oldukça faydalı olacaktır.
+
+Basit bir örnekle başlayalım:
+
+
+```python
+liste = ["Python2.7", "Python3.2", "Python3.3", "Python3.4", "Java"]
+
+derli = re.compile("[A-Za-z]+[0-9]\.[0-9]")
+
+for i in liste:
+    nesne = derli.search(i)
+    if nesne:
+        print(nesne.group())
+```
+
+    Python2.7
+    Python3.2
+    Python3.3
+    Python3.4
+
+
+Burada öncelikle düzenli ifade kalıbımızı derledik. Derleme işlemini nasıl yaptığımıza dikkat edin. 
+
+Derlenecek düzenli ifade kalıbını `compile()` metodunda parantez içinde belirtiyoruz. 
+
+Daha sonra `search()` metodunu kullanırken ise, `re.search()` demek yerine, `derli.search()` şeklinde bir ifade kullanıyoruz. Ayrıca dikkat ederseniz `derli.search()` kullanımında parantez içinde sadece eşleşecek karakter dizisini kullandık (i). 
+
+Eğer derleme işlemi yapmamış olsaydık, hem bu karakter dizisini, hem de düzenli ifade kalıbını yan yana kullanmamız gerekecektir. Ama düzenli ifade kalıbımızı yukarıda derleme işlemi esnasında belirttiğimiz için, bu kalıbı ikinci kez yazmamıza gerek kalmadı. Ayrıca burada kullandığımız düzenli ifade kalıbına da dikkat edin. Nasıl bir şablon oturttuğumuzu anlamaya çalışın. Gördüğünüz gibi, liste öğelerinde bulunan `.` işaretini eşleştirmek için düzenli ifade kalıbı içinde `\.` ifadesini kullandık. Çünkü bildiğiniz gibi, tek başına `.` işaretinin Python açısından özel bir anlamı var. Dolayısıyla bu özel anlamdan kaçmak için `\` işaretini de kullanmamız gerekiyor.
+
+## compile() ile Derleme Seçenekleri
+
+Bir önceki bölümde `compile()` metodunun ne olduğunu, ne işe yaradığını ve nasıl kullanıldığını görmüştük. Bu bölümde ise **compile (derleme)** işlemi sırasında kullanılabilecek seçenekleri anlatacağız.
+
+
+## re.IGNORECASE veya re.I
+
+Bildiğiniz gibi, Python’da büyük-küçük harfler önemlidir. Yani eğer **python** kelimesini arıyorsanız, alacağınız çıktılar arasında **Python** olmayacaktır. Çünkü **python** ve **Python** birbirlerinden farklı iki karakter dizisidir. İşte `re.IGNORECASE` veya kısaca `re.I` adlı derleme seçenekleri bize **büyük-küçük harfe dikkat etmeden arama yapma** imkanı sağlar. Hemen bir örnek verelim:
+
+
+```python
+metin = """Programlama dili, programcının bir bilgisayara ne yapmasını
+istediğini anlatmasının standartlaştırılmış bir yoludur. Programlama
+dilleri, programcının bilgisayara hangi veri üzerinde işlem yapacağını,
+verinin nasıl depolanıp iletileceğini, hangi koşullarda hangi işlemlerin
+yapılacağını tam olarak anlatmasını sağlar. Şu ana kadar 2500’den fazla
+programlama dili yapılmıştır. Bunlardan bazıları: Pascal, Basic, C, C#,
+C++, Java, Cobol, Perl, Python, Ada, Fortran, Delphi programlama
+dilleridir."""
+
+derli = re.compile("programlama",re.IGNORECASE)
+print(derli.findall(metin))
+```
+
+    ['Programlama', 'Programlama', 'programlama', 'programlama']
+
+
+Gördüğünüz gibi, metinde geçen hem **programlama** kelimesini hem de **Programlama** kelimesini ayıklayabildik. Bunu yapmamızı sağlayan şey de `re.IGNORECASE` adlı derleme seçeneği oldu. 
+
+Eğer bu seçeneği kullanmasaydık, çıktıda yalnızca **programlama** kelimesini görürdük. Çünkü aradığımız şey aslında **programlama** kelimesi idi. Biz istersek `re.IGNORECASE` yerine kısaca `re.I` ifadesini de kullanabiliriz. Aynı anlama gelecektir.
+
+## re.DOTALL veya re.S
+
+Bildiğiniz gibi, metakarakterler arasında yer alan `.` sembolü herhangi bir karakterin yerini tutuyordu. Bu metakarakter bütün karakterlerin yerini tutmak üzere kullanılabilir. Hatırlarsanız, `.` metakarakterini anlatırken, bu metakarakterin, **yeni satır karakterinin yerini tutmayacağını** söylemiştik. Bunu bir örnek yardımıyla görelim. Diyelim ki elimizde şöyle bir karakter dizisi var:
+
+
+```python
+a = "Ben Python,\nMonty Python"
+print(a)
+```
+
+    Ben Python,
+    Monty Python
+
+
+Bu karakter dizisi içinde **Python** kelimesini temel alarak bir arama yapmak istiyorsak eğer, kullanacağımız şu kod istediğimiz şeyi yeterince yerine getiremeyecektir:
+
+
+```python
+print(re.search("Python.*", a).group())
+```
+
+    Python,
+
+
+Bunun sebebi, `.` metakarakterinin `\n` (yeni satır) kaçış dizisini dikkate almamasıdır. Bu yüzden bu kaçış dizisinin ötesine geçip orada arama yapmıyor. Ama şimdi biz ona bu yeteneği de kazandıracağız:
+
+
+```python
+derle = re.compile("Python.*", re.DOTALL)
+nesne = derle.search(a)
+
+if nesne:
+    print(nesne.group())
+```
+
+    Python,
+    Monty Python
+
+
+`re.DOTALL` seçeneğini sadece `re.S` şeklinde de kısaltabilirsiniz.
+
+# Düzenli İfadelerle Metin/Karakter Dizisi Değiştirme İşlemleri
+
+## sub() metodu
+
+Kaynak: https://python-istihza.yazbel.com/standart_moduller/regex.html
