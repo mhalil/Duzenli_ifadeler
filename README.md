@@ -26,11 +26,11 @@ Düzenli İfadeler (Regular Expressions) konusunu farklı kaynaklardan okuyup in
 
 2. [MetaKarakterler (Özel Karakterler)](metakarakterler.md)
    
-   * "[ ]" Köşeli Parantez
+   * ["[ ]" Köşeli Parantez](metakarakterler.md "[] Köşeli Parantez")
    
-   * "." Nokta
+   * ["." Nokta]((metakarakterler.md ". Nokta")
    
-   * "*" Yıldız
+   * ["*" Yıldız]((metakarakterler.md "* Yıldız")
    
    * "+" Artı
    
@@ -75,12 +75,10 @@ Düzenli İfadeler (Regular Expressions) konusunu farklı kaynaklardan okuyup in
        - re.IGNORECASE veya re.I
        
        - re.DOTALL veya re.S
-       
-       - 
-   
-   * Düzenli İfadelerle Metin/Karakter Dizisi Değiştirme İşlemleri
-     
-     * sub() metodu
-     * subn() metodu
-   
-   * Sonuç
+* Düzenli İfadelerle Metin/Karakter Dizisi Değiştirme İşlemleri
+  
+  * sub() metodu
+  
+  * subn() metodu
+
+* Sonuç
