@@ -13,7 +13,6 @@ Bir karakter dizisi içinde belirli bir kelimenin ya da kelime grubunun geçip g
 
 ```python
 cumle = "python güçlü bir programlama dilidir."
-
 re.match("python", cumle)
 ```
 
