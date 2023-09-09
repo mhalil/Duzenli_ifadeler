@@ -24,7 +24,7 @@ Düzenli İfadeler (Regular Expressions) konusunu farklı kaynaklardan okuyup in
    * search() Metodu
    * findall() Metodu
 
-2. [MetaKarakterler](metakarakterler.md)
+2. [MetaKarakterler (Özel Karakterler)](metakarakterler.md)
    
    * "[ ]" Köşeli Parantez
    
@@ -81,3 +81,6 @@ Düzenli İfadeler (Regular Expressions) konusunu farklı kaynaklardan okuyup in
    * Düzenli İfadelerle Metin/Karakter Dizisi Değiştirme İşlemleri
      
      * sub() metodu
+     * subn() metodu
+   
+   * Sonuç
