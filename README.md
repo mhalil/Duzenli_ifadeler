@@ -28,15 +28,15 @@ Düzenli İfadeler (Regular Expressions) konusunu farklı kaynaklardan okuyup in
    
    * ["[ ]" Köşeli Parantez](metakarakterler.md "[] Köşeli Parantez")
    
-   * ["." Nokta]((metakarakterler.md ". Nokta")
+   * ["." Nokta](metakarakterler.md ". Nokta")
    
-   * ["*" Yıldız]((metakarakterler.md "* Yıldız")
+   * ["*" Yıldız](metakarakterler.md "* Yıldız")
    
-   * "+" Artı
+   * ["+" Artı](metakarakterler.md "+ Artı")
    
-   * "?" Soru İşareti
+   * ["?" Soru İşareti](metakarakterler.md "? Soru İşareti")
    
-   * "{ }" Küme Parantezi
+   * ["{ }" Küme Parantezi](metakarakterler.md "{} Küme Parantezi")
    
    * "^" Şapka
    
