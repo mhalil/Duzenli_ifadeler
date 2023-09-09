@@ -26,17 +26,17 @@ Düzenli İfadeler (Regular Expressions) konusunu farklı kaynaklardan okuyup in
 
 2. [MetaKarakterler (Özel Karakterler)](metakarakterler.md)
    
-   * ["[ ]" Köşeli Parantez](metakarakterler.md "[] Köşeli Parantez")
+   * "[ ]" Köşeli Parantez
    
-   * ["." Nokta](metakarakterler.md ". Nokta")
+   * "." Nokta
    
-   * ["*" Yıldız](metakarakterler.md "* Yıldız")
+   * "*" Yıldız
    
-   * ["+" Artı](metakarakterler.md "+ Artı")
+   * "+" Artı
    
-   * ["?" Soru İşareti](metakarakterler.md "? Soru İşareti")
+   * "?" Soru İşareti
    
-   * ["{ }" Küme Parantezi](metakarakterler.md "{} Küme Parantezi")
+   * "{ }" Küme Parantezi
    
    * "^" Şapka
    
