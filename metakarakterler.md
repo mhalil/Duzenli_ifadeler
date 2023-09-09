@@ -588,7 +588,7 @@ for i in a:
 
 ## \d   Sayıların Yerini Tutan Özel Dizi.
 
-Bu sembol, bir karakter dizisi içinde geçen ondalık **sayıları eşleştirmek için** kullanılır. Yani `[^0-9]` ifadesi ile eşdeğerdir.
+Bu sembol, bir karakter dizisi içinde geçen ondalık **sayıları eşleştirmek için** kullanılır. Yani `[0-9]` ifadesi ile eşdeğerdir.
 
 Buraya kadar olan örneklerde bu işlevi yerine getirmek için `[0-9]` ifadesinden yararlanıyorduk. Şimdi artık aynı işlevi daha kısa yoldan, `\d` dizisi ile yerine getirebiliriz. İsterseniz yine yukarıdaki örnekten gidelim:
 
