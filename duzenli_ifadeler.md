@@ -1,5 +1,21 @@
 # Düzenli İfadeler (Regular Expressions)
 
+Düzenli ifadeler (RegEx ya da Regular Expression), bir karakter serisi içinde belli bir düzene uyan eşleşmeleri bulmanıza ve yönetmenize yardımcı olacak desenler oluşturmanıza izin veren bir metin dizisidir. Bir metinde geçen karakterleri RegEx desenleri (pattern) kullanarak arayabiliriz.
+
+Düzenli ifadeler bir arama işleminde eşleştirilecek bir deseni temsil eden özel dizelerdir. Java ve Perl gibi programlama dillerinden grep, sed ve metin düzenleyici vim gibi metin işleme araçlarına kadar çok çeşitli bilgi işlem uygulamalarında önemli bir araçtır. 
+
+**Düzenli ifadeler sayesinde ne yapabiliriz bir bakalım :**
+
+* **Yer değiştirme:** Belirli parçaları değiştirir. Örnek olarak metin içerisindeki tüm büyük harfleri küçük harf ya da tüm küçük harfleri büyük harfe dönüştürebilirsiniz.
+
+* **Doğrulama :** Yazdığınız bir program olsun, bu programda büyük veya küçük harf, nokta veya rakam gibi kriterleri karşılayıp karşılamadığını kontrol edebilirsiniz.
+
+* **Arama :** Bir metin imzası içerisindeki tüm ögeleri aratabilirsiniz. Örneğin telefon numaraları ya da e-posta adresleri gibi.
+
+* **Koordinat ile hareket etme :** Örneğin, bir dizindeki belirli paketleri, dosyaları işlemek isteyebilirsiniz ancak yalnızca belirli koşulları karşılıyorlarsa, komut satırında çalıştırabiliyorsunuz.
+
+* **Metni Yeniden Biçimlendirme :** Örneğin, Bir programdaki verileri metin dosyası olarak dışa aktarabilir, ardından düzenini değiştirerek metin düzenleyicisi kullanarak başka bir programa aktarabilirsiniz.
+
 Python’daki düzenli ifadelere ilişkin her şey, bir modül içinde tutulur. Bu modülün adı **re**'dir. 
 Düzenli ifadeleri kullanabilmemiz için öncelikle bu **re** modülünü içe aktarmamız gerekir:
 
@@ -7,19 +23,46 @@ Düzenli ifadeleri kullanabilmemiz için öncelikle bu **re** modülünü içe a
 import re
 ```
 
+## RegEx Fonksiyonları
+
+**re** modülü bir veride geçen karakterleri bulmamıza ve değiştirmemize olanak sağlayan bazı fonksiyonlara sahiptir. Bunlar;
+
+| Fonksiyon | Açıklama                                                  |
+| --------- | --------------------------------------------------------- |
+| match     | Karakter dizisinin başında eşleşme olup olmadığını göster |
+| findall   | Tüm eşleşmeleri göster (liste halinde)                    |
+| search    | Eşleşme olup olmadığını göster                            |
+| split     | Eşleşme noktalarından böl ve liste oluştur                |
+| sub       | Eşleşmeleri verilen ifade ile değiştir                    |
+
 ## match() Metodu
 
-Bir karakter dizisi içinde belirli bir kelimenin ya da kelime grubunun geçip geçmediğini öğrenmek istiyorsak bu işlemi `match()` metodunu kullanarak yapabiliriz:
+Bir karakter dizisi başında belirli bir kelimenin ya da kelime grubunun geçip geçmediğini öğrenmek istiyorsak bu işlemi `match()` metodunu kullanarak yapabiliriz.
+
+**match()** metodunun;
+
+* ilk argümanı eşleştirilecek (aranacak) değer, 
+* ikinci argümanı ise , eşleştirilecek (aramanın) yapılacağı karakter dizisi olmalıdır.
 
 ```python
 cumle = "python güçlü bir programlama dilidir."
+
 re.match("python", cumle)
 ```
 
     <re.Match object; span=(0, 6), match='python'>
 
-**match()** metodunun ilk argümanı karşılaştırılacak (aranacak) değer, ikinci argümanı ise , karşılaşırmanın (aramanın) yapılacağı karakter dizisi olmalıdır.
+Bu nesnenin dönen değeri ile ilgili bazı işlemler yapılabilir. Bunun için nesnenin yöntemleri kullanılır. Bunlar;
+
+* `span()` tuple olarak başlangıç ve bitiş pozisyonlarını verir.
+* `string` dönen string değeri yazdırır
+* `group()` eşleşmelerinin yerlerini içerir
+
 Bu çıktıdaki **span** parametresi, aradığımız **python** karakter dizisinin, **cumle** değişkeninin 0. ile 6. karakterleri arasında yer aldığını söylüyor bize.
+
+### span() metodu
+
+Eşleşmenin başladığı ve sona erdiği karakterlerin sırasını verir (0=1. karakter):
 
 ```python
 x = re.match("python", cumle)
@@ -44,7 +87,37 @@ cumle[x.span()[0]:x.span()[1]]
 
     'python'
 
+```python
+txt = "Bu sabah yağmur var İstanbul'da..."
+a = re.search(r"\by\w+", txt)
+print(a.span())
+```
+
+    (9, 15)
+
+### string Özelliği
+
+Eşleşme bulunan metni gösterir.
+
+```python
+txt = "Bu sabah yağmur var İstanbul'da..."
+a = re.search(r"\by\w+", txt)
+print(a.string)
+```
+
+    Bu sabah yağmur var İstanbul'da...
+
 ### group() Metodu
+
+ Eşleşme bulunan parçayı gösterir.
+
+```python
+txt = "Bu sabah yağmur var İstanbul'da..."
+a = re.search(r"\by\w+", txt)
+print(a.group())
+```
+
+    yağmur
 
 `x = re.match("python", cumle)` ifadesi ile eşleştirme komutunu bir değişkene (**x**'e) atadık. Hatırlarsanız, bu fonksiyonu komut satırına yazdığımızda bir eşleşme nesnesi elde ediyorduk. İşte burada değişkene atadığımız şey aslında bu eşleşme nesnesinin kendisi oluyor. Bu durumu şu şekilde teyit edebilirsiniz:
 
@@ -85,12 +158,29 @@ print(re.match("güçlü", cumle))
 **cumle** değişkeninde **güçlü** ifadesi geçtiği halde `match()` metodu bize bir eşleşme nesnesi döndürmedi. Peki ama neden?
 
 Aslında bu gayet normal. Çünkü `match()` metodu bir karakter dizisinin sadece en başına bakar. 
-Yani **python güçlü bir programlama dilidir.** ifadesini tutan **cumle** değişkenine `re.match(“güçlü”, cumle)` gibi bir fonksiyon uyguladığımızda, `match()` metodu **cumle** değişkeninin yalnızca en başına bakacağı ve **cumle** değişkeninin en başında **güçlü** yerine **python** ifadesi olduğu için, `match()` metodu bize olumsuz yanıt verecektir.
+Yani "**python güçlü bir programlama dilidir.**" ifadesini tutan **cumle** değişkenine `re.match(“güçlü”, cumle)` gibi bir fonksiyon uyguladığımızda, `match()` metodu **cumle** değişkeninin yalnızca en başına bakacak ve **cumle** değişkeninin en başında **güçlü** yerine **python** ifadesini gördüğü için, bize olumsuz yanıt verecektir.
 
 Aslında `match()` metodunun yaptığı bu işi, karakter dizilerinin `split()` metodu yardımıyla da yapabiliriz:
 
+## split() Metodu
+
+`split()` metodu veriyi eşleşmelerin olduğu noktalardan böler ve liste haline getirir. Örneğin aşağıdaki kod çalıştırılırsa cümle boşluk (`\s`) karakterlerinden bölünür (yani kelimelere ayrılır):
+
+```python
+x = re.split("\s", cumle)
+print(x)
+```
+
+    ['python', 'güçlü', 'bir', 'programlama', 'dilidir.']
+
 ```python
 cumle.split()[0] == "python"
+```
+
+    True
+
+```python
+cumle.startswith("python")
 ```
 
     True
@@ -101,13 +191,16 @@ cumle.split()[0] == "güçlü"
 
     False
 
-aynı işi sadece `startswith()` metodunu kullanarak dahi yapabiliriz:
+Bölünme sayısı `split()` fonksiyonunun 3. parametresinde **(maxsplit)** belirtilebilir. Aşağıdaki örnekte veri en çok 2 boşluk kadar (3 parça) bölünecektir:
 
 ```python
-cumle.startswith("python")
+x = re.split("\s", cumle, 2)
+print(x)
 ```
 
-    True
+    ['python', 'güçlü', 'bir programlama dilidir.']
+
+Aynı işi sadece `startswith()` metodunu kullanarak dahi yapabiliriz:
 
 Eğer düzenli ifadelerden tek beklentiniz bir karakter dizisinin en başındaki veriyle eşleştirme işlemi yapmaksa, `split()` veya `startswith()` metotlarını kullanmak daha mantıklıdır. Çünkü `split()` ve `startswith()` metotları `match()` metodundan çok daha hızlı çalışacaktır.
 
@@ -140,6 +233,26 @@ nesne.group()
 ```
 
     'güçlü'
+
+### Start() Medodu
+
+Arama deseni ile eşleşen ifadenin, karakter dizisinin kaçıncı karakterinde **başladığını** görmek için `start()` metodunu kullanabiliriz ;
+
+```python
+nesne.start()
+```
+
+    7
+
+### End() Medodu
+
+Arama deseni ile eşleşen ifadenin, karakter dizisinin kaçıncı karakterinde **bittiğini** görmek için `end()` metodunu kullanabiliriz ;
+
+```python
+nesne.end()
+```
+
+    12
 
 Şimdiye kadar hep karakter dizileri üzerinde çalıştık. İsterseniz biraz da listeler üzerinde örnekler verelim.
 
@@ -201,3 +314,42 @@ print(re.findall("Python", metin))
     ['Python', 'Python', 'Python', 'Python', 'Python', 'Python']
 
 Gördüğünüz gibi, metinde geçen bütün “Python” kelimelerini bir çırpıda liste olarak aldık.
+
+## sub() Metodu
+
+`sub()` metodu, eşleşmeleri verilen ifadelerle değiştirir. Pek çok uygulamadan bildiğimiz **Bul ve Değiştir** fonksiyonudur aslında.Bu Metod, diğer bölümde detaylı olarak anlatılıyor.
+
+`sub()` metodunun;
+
+* ilk argümanı değiştirilecek değeri, 
+* ikinci argümanı yerine konulacak değeri, 
+* üçüncü argümanı hangi yapı içinde değişimin yapılacağını,
+* dördüncü argümanı kaç eşleşmede değişiklik yapılacağını,
+
+tanımlar.
+
+Aşağıdaki örnekte **kavun** kelimesini bulacak, ardından **karpuz** olarak değiştirecektir:
+
+```python
+txt = "Bugün kavun yedim."
+x = re.sub("kavun", "karpuz", txt)
+print(x)
+```
+
+    Bugün karpuz yedim.
+
+yukarıdaki açıklamada `sub()` metodu ile kaç eşleşmede değişiklik yapılacağı, metodun 4. parametresinde (count) belirtilebileceğinden bahsetmiştik. Basit bir örnek yapalım;
+
+```python
+txt = "Yaz Yaz Yaz Bir Kenara Yaz"
+x = re.sub("Yaz", "Çiz", txt, 2)
+print(x)
+```
+
+    Çiz Çiz Yaz Bir Kenara Yaz
+
+Kaynaklar:
+
+* https://python-istihza.yazbel.com/standart_moduller/regex.html
+* https://python.sitesi.web.tr/python-regex.html
+* https://medium.com/@zeynepengin/regular-expressions-d%C3%BCzenli-i%CC%87fadeler-2e75f44d4f6f

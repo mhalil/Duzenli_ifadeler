@@ -21,8 +21,24 @@ Düzenli İfadeler (Regular Expressions) konusunu farklı kaynaklardan okuyup in
 1. [Düzenli İfadeler](duzenli_ifadeler.md)
    
    * match() Metodu 
+     
+     * span() Metodu
+     
+     * string Özelliği
+     
+     * group() Metodu
+   
+   * split() Metodu
+   
    * search() Metodu
+     
+     * start() Metodu
+     
+     * end() Metodu
+   
    * findall() Metodu
+   
+   * sub() Metodu
 
 2. [MetaKarakterler (Özel Karakterler)](metakarakterler.md)
    
