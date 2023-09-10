@@ -38,6 +38,8 @@ Düzenli İfadeler (Regular Expressions) konusunu farklı kaynaklardan okuyup in
    
    * findall() Metodu
    
+   * finditer() Metodu
+   
    * sub() Metodu
 
 2. [MetaKarakterler (Özel Karakterler)](metakarakterler.md)
