@@ -1,6 +1,6 @@
 # Düzenli İfadeler Özet Tablosu (Regular Expressions Cheat Sheet)
 
-## Karakterler Sınıfları
+## Sabitleyiciler
 
 |Simge| Desen Açıklaması | Örnek Desen | Eşleşen Örnek | Açıklama |
 |---|---|---|---|---|
@@ -13,3 +13,23 @@
 |\b | Kelime **kesin sınırını** belirtir                |`\bhalil\b`| **"halil."**, **"(halil)"** ve  "adım **halil** demiştim."| karakter dizini iiçinde tam kelime eşleşmesi arar |
 |\B | `\b` nin tam tersidir.                            |'py\B'     |**"python, py3, py2"** |**"py, py."** ve **"py!"** ile eşleşmez |
 |\B | `\b` nin tam tersidir. `\B...\B` şeklinde kullanımına dair örnek         |'\Ber\B'     |**"seher, Sertaç"** |**"erkek,"** ve **"şeker"** ile eşleşmez, çünkü bu kelimeler **er** ile başlıyor ya da bitiyor. |
+
+## Karakter Türleri
+
+
+## Karakter Sınıfları
+
+## Tekrar / Yineleme / Kopya
+
+## Yakalama, değiştirme ve geri referanslar
+
+## İleriye Dönük
+
+## Değişmez eşleşmeler ve değiştiriciler
+
+## Unicode
+
+
+```python
+
+```
