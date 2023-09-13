@@ -100,3 +100,5 @@ Düzenli İfadeler (Regular Expressions) konusunu farklı kaynaklardan okuyup in
   * subn() metodu
 
 * Sonuç
+
+[Düzenli Tablo Özet Tablosu (Cheat Sheet)](Duzenli_İfade_Ozet_Tablo.md)
