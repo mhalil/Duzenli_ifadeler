@@ -85,6 +85,10 @@ Düzenli İfadeler (Regular Expressions) konusunu farklı kaynaklardan okuyup in
      * \w
      
      * \W
+     
+     * \b
+     
+     * \B
    
    * Düzenli İfadelerin Derlenmesi
      
