@@ -31,8 +31,9 @@ import re
 | Fonksiyon | Açıklama                                           |
 | --------- | -------------------------------------------------- |
 | match     | Karakter dizisinin başında eşleşme olup olmadığını göster |
-| findall   | Tüm eşleşmeleri göster (liste halinde)             |
 | search    | Eşleşme olup olmadığını göster                     |
+| findall   | Tüm eşleşmeleri göster (liste halinde)             |
+| finditer  | Belirtilen desenlerin karakter dizileri içerisindeki konumunu bulmak için kullanabiliriz.|
 | split     | Eşleşme noktalarından böl ve liste oluştur         |
 | sub       | Eşleşmeleri verilen ifade ile değiştir             |
 
@@ -214,72 +215,6 @@ Yani "**python güçlü bir programlama dilidir.**" ifadesini tutan **cumle** de
 
 Aslında `match()` metodunun yaptığı bu işi, karakter dizilerinin `split()` metodu yardımıyla da yapabiliriz:
 
-## split() Metodu
-
-`split()` metodu veriyi eşleşmelerin olduğu noktalardan böler ve liste haline getirir. Örneğin aşağıdaki kod çalıştırılırsa cümle boşluk (`\s`) karakterlerinden bölünür (yani kelimelere ayrılır):
-
-
-```python
-cumle = "python güçlü bir programlama dilidir."
-x = re.split("\s", cumle)
-print(x)
-```
-
-    ['python', 'güçlü', 'bir', 'programlama', 'dilidir.']
-
-
-
-```python
-cumle.split()[0] == "python"
-```
-
-
-
-
-    True
-
-
-
-
-```python
-cumle.startswith("python")
-```
-
-
-
-
-    True
-
-
-
-
-```python
-cumle.split()[0] == "güçlü"
-```
-
-
-
-
-    False
-
-
-
-Bölünme sayısı `split()` fonksiyonunun 3. parametresinde **(maxsplit)** belirtilebilir. Aşağıdaki örnekte veri en çok 2 boşluk kadar (3 parça) bölünecektir:
-
-
-```python
-cumle = "python güçlü bir programlama dilidir."
-x = re.split("\s", cumle, 2)
-print(x)
-```
-
-    ['python', 'güçlü', 'bir programlama dilidir.']
-
-
-Aynı işi sadece `startswith()` metodunu kullanarak dahi yapabiliriz:
-
-Eğer düzenli ifadelerden tek beklentiniz bir karakter dizisinin en başındaki veriyle eşleştirme işlemi yapmaksa, `split()` veya `startswith()` metotlarını kullanmak daha mantıklıdır. Çünkü `split()` ve `startswith()` metotları `match()` metodundan çok daha hızlı çalışacaktır.
-
 ## search() Metodu
 
 `search()` metodu ile `match()` metodu arasında çok önemli bir fark vardır. `match()` metodu bir karakter dizisinin en başına bakıp bir **eşleştirme** işlemi yaparken, `search()` metodu karakter dizisinin genelinde bir **arama** işlemi yapar. Yani biri eşleştirir, öbürü arar.
@@ -454,6 +389,72 @@ for i in re.finditer("Python", metin):
     (430, 436)
     (522, 528)
 
+
+## split() Metodu
+
+`split()` metodu veriyi eşleşmelerin olduğu noktalardan böler ve liste haline getirir. Örneğin aşağıdaki kod çalıştırılırsa cümle boşluk (`\s`) karakterlerinden bölünür (yani kelimelere ayrılır):
+
+
+```python
+cumle = "python güçlü bir programlama dilidir."
+x = re.split("\s", cumle)
+print(x)
+```
+
+    ['python', 'güçlü', 'bir', 'programlama', 'dilidir.']
+
+
+
+```python
+cumle.split()[0] == "python"
+```
+
+
+
+
+    True
+
+
+
+
+```python
+cumle.startswith("python")
+```
+
+
+
+
+    True
+
+
+
+
+```python
+cumle.split()[0] == "güçlü"
+```
+
+
+
+
+    False
+
+
+
+Bölünme sayısı `split()` fonksiyonunun 3. parametresinde **(maxsplit)** belirtilebilir. Aşağıdaki örnekte veri en çok 2 boşluk kadar (3 parça) bölünecektir:
+
+
+```python
+cumle = "python güçlü bir programlama dilidir."
+x = re.split("\s", cumle, 2)
+print(x)
+```
+
+    ['python', 'güçlü', 'bir programlama dilidir.']
+
+
+Aynı işi sadece `startswith()` metodunu kullanarak dahi yapabiliriz:
+
+Eğer düzenli ifadelerden tek beklentiniz bir karakter dizisinin en başındaki veriyle eşleştirme işlemi yapmaksa, `split()` veya `startswith()` metotlarını kullanmak daha mantıklıdır. Çünkü `split()` ve `startswith()` metotları `match()` metodundan çok daha hızlı çalışacaktır.
 
 ## sub() Metodu
 
