@@ -1,8 +1,8 @@
 # Düzenli İfadeler (Regular Expressions)
 
-Düzenli ifadeler (RegEx ya da Regular Expression), bir karakter serisi içinde belli bir düzene uyan eşleşmeleri bulmanıza ve yönetmenize yardımcı olacak desenler oluşturmanıza izin veren bir metin dizisidir. Bir metinde geçen karakterleri RegEx desenleri (pattern) kullanarak arayabiliriz.
+**Düzenli ifadeler (RegEx ya da Regular Expression)**, bir karakter dizisi içinde bulunan, belli bir düzene uyan eşleşmeleri bulmanıza ve yönetmenize yardımcı olacak **desenler** oluşturmanıza izin veren bir metin dizisidir (bir string ifadedir). Bir metinde geçen karakterleri **RegEx desenleri (pattern)** kullanarak arayabiliriz.
 
-Düzenli ifadeler bir arama işleminde eşleştirilecek bir deseni temsil eden özel dizelerdir. Java ve Perl gibi programlama dillerinden grep, sed ve metin düzenleyici vim gibi metin işleme araçlarına kadar çok çeşitli bilgi işlem uygulamalarında önemli bir araçtır. 
+Düzenli ifadeler bir arama işleminde eşleştirilecek deseni temsil eden özel dizelerdir. **Java** ve **Perl** gibi programlama dillerinden **grep, sed** ve metin düzenleyici **vim** gibi metin işleme araçlarına kadar çok çeşitli bilgi işlem uygulamalarında kullanılan önemli bir araçtır. 
 
 **Düzenli ifadeler sayesinde ne yapabiliriz bir bakalım :**
 
@@ -10,13 +10,14 @@ Düzenli ifadeler bir arama işleminde eşleştirilecek bir deseni temsil eden �
 
 * **Doğrulama :** Yazdığınız bir program olsun, bu programda büyük veya küçük harf, nokta veya rakam gibi kriterleri karşılayıp karşılamadığını kontrol edebilirsiniz.
 
-* **Arama :** Bir metin imzası içerisindeki tüm ögeleri aratabilirsiniz. Örneğin telefon numaraları ya da e-posta adresleri gibi.
+* **Arama :** Bir metin içerisindeki tüm ögeleri aratabilirsiniz. Örneğin telefon numaraları ya da e-posta adresleri gibi.
 
 * **Koordinat ile hareket etme :** Örneğin, bir dizindeki belirli paketleri, dosyaları işlemek isteyebilirsiniz ancak yalnızca belirli koşulları karşılıyorlarsa, komut satırında çalıştırabiliyorsunuz.
 
 * **Metni Yeniden Biçimlendirme :** Örneğin, Bir programdaki verileri metin dosyası olarak dışa aktarabilir, ardından düzenini değiştirerek metin düzenleyicisi kullanarak başka bir programa aktarabilirsiniz.
 
-Python’daki düzenli ifadelere ilişkin her şey, bir modül içinde tutulur. Bu modülün adı **re**'dir. 
+Python’daki düzenli ifadelere ilişkin her şey, bir modül içinde tutulur. Bu modülün adı **re**'dir. **re** modülü Python'ın dahili (build-in) modeüllerindendir. Ayrıca yüklememize gerek yoktur. Bilgisayarınızda Python yüklü ise, **re modülü** de yüklenmiş ve kullanıma hazır olarak bekliyordur.
+
 Düzenli ifadeleri kullanabilmemiz için öncelikle bu **re** modülünü içe aktarmamız gerekir:
 
 
@@ -24,26 +25,26 @@ Düzenli ifadeleri kullanabilmemiz için öncelikle bu **re** modülünü içe a
 import re
 ```
 
-## RegEx Fonksiyonları
+## RegEx Fonksiyonları / Metotları
 
 **re** modülü bir veride geçen karakterleri bulmamıza ve değiştirmemize olanak sağlayan bazı fonksiyonlara sahiptir. Bunlar;
 
-| Fonksiyon | Açıklama                                           |
+| **Fonksiyon / Metot** | **Açıklama**                                   |
 | --------- | -------------------------------------------------- |
-| match     | Karakter dizisinin başında eşleşme olup olmadığını göster |
-| search    | Eşleşme olup olmadığını göster                     |
-| findall   | Tüm eşleşmeleri göster (liste halinde)             |
-| finditer  | Belirtilen desenlerin karakter dizileri içerisindeki konumunu bulmak için kullanabiliriz.|
-| split     | Eşleşme noktalarından böl ve liste oluştur         |
-| sub       | Eşleşmeleri verilen ifade ile değiştir             |
+| **match()**     | Karakter dizisinin başında eşleşme olup olmadığını göster |
+| **search()**    | Eşleşme olup olmadığını göster                     |
+| **findall()**   | Tüm eşleşmeleri göster (liste halinde)             |
+| **finditer()**  | Belirtilen desenlerin karakter dizileri içerisindeki konumunu bulmak için kullanabiliriz.|
+| **split()**     | Eşleşme noktalarından böl ve liste oluştur         |
+| **sub()**       | Eşleşmeleri verilen ifade ile değiştir             |
 
 ## match() Metodu
 
-Bir karakter dizisi başında belirli bir kelimenin ya da kelime grubunun geçip geçmediğini öğrenmek istiyorsak bu işlemi `match()` metodunu kullanarak yapabiliriz.
+Bir **karakter dizisi başında** belirli bir kelimenin ya da kelime grubunun geçip geçmediğini öğrenmek istiyorsak bu işlemi `match()` metodunu kullanarak yapabiliriz.
 
 **match()** metodunun;
-* ilk argümanı eşleştirilecek (aranacak) değer, 
-* ikinci argümanı ise , eşleştirilecek (aramanın) yapılacağı karakter dizisi olmalıdır.
+* ilk argümanı eşleştirilecek (aranacak) değer, yani desen
+* ikinci argümanı ise, aramanın yapılacağı karakter dizisi olmalıdır.
 
 
 ```python
@@ -59,19 +60,23 @@ re.match(r"python", cumle)
 
 
 
-Düzenli ifadeler için bir desen tanımlarken, `r` ifadesini yazmamız istenir. Yazılmadığı zaman da sorun çıkarmıyor ancak tanımlanan ifadenin bir değişken mi? yoksa bir düzenli ifade deseni mi? olduğunu belirtmek için bu şekilde kullanım faydalı olacaktır.
+Yukarıdaki `r"python"` deseni, yani aranan değer, zaten bulunan değeri ile aynı olduğu için, bu arama/eşleşme yönteminin kullanımı size anlamsız/saçma gelmiş olabilir. 
 
-Bu nesnenin dönen değeri ile ilgili bazı işlemler yapılabilir. Bunun için nesnenin yöntemleri kullanılır. Bunlar;
+İlerleyen bölümlerde **Metakarakterler** konusunu anlatılırken çok farklı desenler oluştururarak farklı sonuçlar bulacağız. O bölümde düzenli ifadelerin ne için kullanılabileceğini ve bizlere ne kadar kolaylık sağladığını anlayacaksınız. 
 
-* `span()` tuple olarak başlangıç ve bitiş pozisyonlarını verir.
-* `string` dönen string değeri yazdırır
-* `group()` eşleşmelerinin yerlerini içerir
+Düzenli ifadeler için bir desen tanımlarken, `r` ifadesini yazmamız istenir. İlerleyen bölümlerde göreceğimiz üzere, **özel metakarakterleri** desen içerisinde yazmamız gerektiğinde `r` ifadesini kullanmadığımızda sorun ile karşılaşırız. Özel metakarakterleri desen içerisinde yazmadığımız zaman da `r` ifadesini kullanmak sorun çıkarmıyor. Üstelik `r` ile tanımlanan ifade, bir değişken mi? yoksa bir düzenli ifade deseni mi? olduğu kodu inceleyenlere yardımcı oluyor.
 
-Bu çıktıdaki **span** parametresi, aradığımız **python** karakter dizisinin, **cumle** değişkeninin 0. ile 6. karakterleri arasında yer aldığını söylüyor bize.
+`match` nesnesinin dönen değeri ile bazı işlemler yapılabilir. Bunun için nesnenin yöntemleri kullanılır. Bunlar;
+
+* `span()` Başlangıç ve bitiş konumlarını **tuple** olarak verir.
+* `string` Dönen metinsel dizgi ifadesini (string) yazdırır
+* `group()` Eşleşen grupları yazdırır. (`group(1)`, `group(2)`, ...vb. `group(0) = group()` eşittir, tüm eşleşmeleri yazdırır.)
+
+Bu çıktıdaki **span** parametresi bize, aradığımız **python** karakter dizisinin (yani desenin), **cumle** değişkeninin 0. ile 6. karakterleri arasında yer aldığını söylüyor.
 
 ### span() metodu
 
-Eşleşmenin başladığı ve sona erdiği karakterlerin sırasını verir (0=1. karakter):
+Eşleşmenin başladığı ve sona erdiği karakterlerin sırasını verir (0 değeri 1. karakteri temsil eder):
 
 
 ```python
@@ -372,7 +377,7 @@ Gördüğünüz gibi, metinde geçen bütün “Python” kelimelerini bir çır
 
 ## finditer() Metodu
 
-Belirtilen desenlerin karakter dizileri içerisindeki konumunu bulmak için `finditer()` metodunu kullanabiliriz.
+Belirtilen desenlerin karakter dizileri içerisindeki konumunu bulmak için `finditer()` metodunu kullanabiliriz. `finditer()` metodu liste döndürmez, iterable bir nesne döndürür.
 
 Örneğin, yukarıda belirtilen **metin** değişkeni içerisinde **Python** ifadesinin (deseninin) hangi konumda olduğunu (aranan desenin başlangıç ve bitiş değerlerini) bulmaya çalışalım.
 
@@ -390,9 +395,34 @@ for i in re.finditer("Python", metin):
     (522, 528)
 
 
+
+```python
+desen = r"\d{4}"
+eslesenler = re.finditer(desen, metin)
+
+for eslesen in eslesenler:
+    print(eslesen.group())
+```
+
+    1990
+
+
 ## split() Metodu
 
 `split()` metodu veriyi eşleşmelerin olduğu noktalardan böler ve liste haline getirir. Örneğin aşağıdaki kod çalıştırılırsa cümle boşluk (`\s`) karakterlerinden bölünür (yani kelimelere ayrılır):
+
+
+```python
+desen = r"Python"
+bol = re.split(desen, metin)
+
+print(bol)
+```
+
+    ['Guido Van Rossum ', "'ı geliştirmeye 1990 yılında başlamış... Yani aslında ", ' için nispeten yeni\nbir dil denebilir. Ancak ', "'un çok uzun bir geçmişi olmasa da, bu dil öteki dillere kıyasla kolay olması, hızlı\nolması, ayrı bir derleyici programa ihtiyaç duymaması ve bunun gibi pek çok nedenden ötürü çoğu kimsenin gözdesi\nhaline gelmiştir. Ayrıca Google'ın da ", "'a özel bir önem ve değer verdiğini, çok iyi derecede ", ' bilenlere\niş olanağı sunduğunu da hemen söyleyelim. Mesela bundan kısa bir süre önce ', "'ın yaratıcısı Guido Van Rossum \nGoogle'de işe başladı..."]
+
+
+Gördüğünüz gibi, metin, **Python** ibaresi gördüğün yerden itibaren parçalara ayrılarak liste oluşturdu. **Python** ibaresi listeye dahil edilmedi.
 
 
 ```python
@@ -458,12 +488,12 @@ Eğer düzenli ifadelerden tek beklentiniz bir karakter dizisinin en başındaki
 
 ## sub() Metodu
 
-`sub()` metodu, eşleşmeleri verilen ifadelerle değiştirir. Pek çok uygulamadan bildiğimiz **Bul ve Değiştir** fonksiyonudur aslında.Bu Metod, diğer bölümde detaylı olarak anlatılıyor.
+`sub()` metodu, eşleşmeleri verilen ifadelerle değiştirir. **Substitute** kelimesi, yerine koy, değiştir anlamına gelir. `sub()` metodunun adın bu kelimeden gelri. Pek çok uygulamadan bildiğimiz **Bul ve Değiştir** fonksiyonudur aslında.Bu Metod, diğer bölümde detaylı olarak anlatılıyor.
 
 `sub()` metodunun;
 * ilk argümanı değiştirilecek değeri, 
 * ikinci argümanı yerine konulacak değeri, 
-* üçüncü argümanı hangi yapı içinde değişimin yapılacağını,
+* üçüncü argümanı hangi yapı/ dizgi/ paragraf içinde değişimin yapılacağını,
 * dördüncü argümanı kaç eşleşmede değişiklik yapılacağını,
 
 tanımlar.
@@ -492,13 +522,8 @@ print(x)
     Çiz Çiz Yaz Bir Kenara Yaz
 
 
-Kaynaklar:
+### Kaynaklar:
 * https://python-istihza.yazbel.com/standart_moduller/regex.html
 * https://python.sitesi.web.tr/python-regex.html
 * https://medium.com/@zeynepengin/regular-expressions-d%C3%BCzenli-i%CC%87fadeler-2e75f44d4f6f
 * https://www.youtube.com/watch?v=bKWzIvYZmfA
-
-
-```python
-
-```
