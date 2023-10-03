@@ -504,6 +504,74 @@ for i in veri:
     650-abc-7425
     650-xyz-1653
 
+`r"(\d{3})-([a-z]{3})-(\d{4})"` deseni ile 3 adet grup oluşturduk. Bu desenleri açıklayalım;
+
+* `(\d{3})` = **3 adet rakam**, ardından  
+* `-` = **Tire işareti** , ardından
+* `([a-z]{3})` = **a'dan z'ye kadar 3 adet küçük harf** , ardından
+* `-` = **Tire işareti** ve son olarak
+* `(\d{4})` = **4 adet rakam**
+
+dan oluşan bir değer arıyorum.
+
+Şimdi grupları açıklamaya çalışayım.
+
+```python
+veri = "08069114 6501552207 650-abc-7425 (650)605 09 96 650-537-82-34 650_919_64 6509318724 650-xyz-1653"
+
+desen = r"(\d{3})-([a-z]{3})-(\d{4})"
+eslesen = re.finditer(desen, veri)
+
+for es in eslesen:
+    print(es.group())
+```
+
+    650-abc-7425
+    650-xyz-1653
+
+Görüldüğü üzere aranan desene uygun 2 adet sonuç elde ettik; **650-abc-7425** ve **650-xyz-1653**. 
+
+Parantez içine aldığımız desenlerin her biri **bir grubu ifade ediyor**.  Bu değerleri ekrana yazdırmak için `group()` metodunu kullandık. `group()` metodu ile `group(0)` metodu aynıdır. Desenimizde (parantez içinde) 3 grup olduğu için `group(1), group(2)` ve `group(3)` yöntemiyle, eşleşen 3 gruba ayrı ayrı erişebiliriz. Aşağıdaki kodları inceleyin;
+
+```python
+desen = r"(\d{3})-([a-z]{3})-(\d{4})"
+eslesen = re.finditer(desen, veri)
+
+print("1. Grup Değerleri:")
+for es in eslesen:
+    print(es.group(1))
+```
+
+    1. Grup Değerleri:
+    650
+    650
+
+```python
+desen = r"(\d{3})-([a-z]{3})-(\d{4})"
+eslesen = re.finditer(desen, veri)
+
+print("2. Grup Değerleri:")
+for es in eslesen:
+    print(es.group(2))
+```
+
+    2. Grup Değerleri:
+    abc
+    xyz
+
+```python
+desen = r"(\d{3})-([a-z]{3})-(\d{4})"
+eslesen = re.finditer(desen, veri)
+
+print("3. Grup Değerleri:")
+for es in eslesen:
+    print(es.group(3))
+```
+
+    3. Grup Değerleri:
+    7425
+    1653
+
 # Eşleşme Nesnelerinin Metotları
 
 ## group() metodu
@@ -542,6 +610,8 @@ print(nesne.group(4))
     bir
     programlama
     dilidir
+
+`group()` metoduna ait benzer bir örnek yukarıdaki **( ) Parantez** başlığı altında detaylı anlatıldı.
 
 ## groups() metodu
 
