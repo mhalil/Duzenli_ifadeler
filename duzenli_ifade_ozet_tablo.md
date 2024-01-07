@@ -59,6 +59,6 @@
 
 ## Kaynak:
 
-* https://www.datacamp.com/cheat-sheet/regular-expresso
-* https://docs.python.org/tr/3/library/re.html#module-re
-* https://www.youtube.com/watch?v=V3Jr2sAHNno&list=WL&index=36&t=10
+* [DataCamp.com](https://www.datacamp.com/cheat-sheet/regular-expresso)
+* [Python.org](https://docs.python.org/tr/3/library/re.html#module-re)
+* [Evieplus Academy](https://www.youtube.com/watch?v=V3Jr2sAHNno&list=WL&index=36&t=10)
