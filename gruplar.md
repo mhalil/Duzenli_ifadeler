@@ -1,10 +1,4 @@
-Title: Düzenli İfadeler - Gruplar
-Date: 2023-12-30 15:06
-Modified: 2023-12-30 15:10
-Category: Düzenli İfadeler
-Tags: Python, Düzenli İfadeler, Regular Expressions, Regex, Re, Kütüphane, Modül, group, grup, metot
-
-# # Gruplama, Etikeleme ve Özellikler
+# Gruplama, Etikeleme ve Özellikler
 
 ## group() metodu
 
